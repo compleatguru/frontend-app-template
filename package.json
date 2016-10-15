@@ -1,0 +1,31 @@
+{
+  "jspm": {
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
+  },
+  "devDependencies": {
+    "clean-css": "latest",
+    "jshint": "latest",
+    "live-reload": "latest",
+    "node-minify": "latest",
+    "node-sass": "latest",
+    "parallelshell": "latest",
+    "pug": "latest",
+    "pug-cli": "latest",
+    "uglifyjs": "latest"
+  },
+  "scripts": {
+    "build": "parallelshell 'rm dist/css/*' 'rm dist/js/*'",
+    "build:css": "node-sass --include-path scss public/css",
+    "build:js": "",
+    "build:pug2html": "pug -p -D pug/*.pug --out public/",
+    "clean": "rm -r dist/*",
+    "prebuild:js": "npm run lint",
+    "lint": "jshint **.js",
+    "livereload": "live-reload --port 9091 dist/",
+    "watch:pug": "pug -w -p-D pug/*.pug --out public/",
+    "watch:css": "node-sass --output-style compact --watch scss/*.scss --output public/css",
+    "watch": "parallelshell 'npm run watch:css' 'npm run watch:pug'"
+  }
+}
